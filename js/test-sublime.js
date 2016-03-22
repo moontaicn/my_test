@@ -1,5 +1,7 @@
 /**
- * 	
+ *
  */
-
+$(function(){
+  alert('asdfaasdfsdf');
+});
 
