@@ -1,0 +1,23 @@
+{% block header %}
+This is the default content
+
+{% set username = "aa" %}
+{{ username }}
+{% set username.n1 = "11" %}
+{% set username.n2 = "22" %}
+{% set username.n3 = "33" %}
+{{ username | n2 }}
+
+{% endblock %}
+
+<section class="left">
+  {% block left %}
+adsfasdf
+  {% endblock %}
+</section>
+
+<section class="right">
+  {% block right %}
+  This is parent content
+  {% endblock %}
+</section>

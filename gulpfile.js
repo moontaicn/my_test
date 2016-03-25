@@ -4,6 +4,7 @@ var gulp = require('gulp');
 // Include Our Plugins
 var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
+var nunjucksRender = require('gulp-nunjucks-render');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
@@ -17,9 +18,12 @@ gulp.task('jscheck', function() {
         .pipe(jshint.reporter('default'));
 });
 
-// Compile Our html
-gulp.task('html', function() {
+// Compile Our html with nunjucks
+gulp.task('html_nunj', function() {
     return gulp.src('html/*.html')
+        .pipe(nunjucksRender({
+            path: ['html/']
+        }))
         .pipe(gulp.dest('dist'));
 });
 
@@ -60,7 +64,7 @@ gulp.task('webserver', function() {
 gulp.task('watch', function() {
     gulp.watch('js/*.js', ['jscheck', 'scripts']);
     gulp.watch('sass/*.scss', ['sass']);
-    gulp.watch('html/*.html', ['html']);
+    gulp.watch('html/*.html', ['html_nunj']);
     gulp.watch('lib/**/*.*', ['lib']);
 });
 
